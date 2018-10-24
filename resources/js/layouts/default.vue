@@ -2,20 +2,23 @@
   <div class="main-layout">
     <navbar/>
 
-    <div class="container mt-4">
-      <child/>
-    </div>
+    <child/>
+
+    <app-footer/>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar'
+import Navbar from "~/components/Navbar";
+import AppFooter from "~/components/AppFooter";
 
 export default {
-  name: 'MainLayout',
+  name: "MainLayout",
 
   components: {
-    Navbar
+    Navbar,
+    AppFooter
   }
-}
+};
 </script>
+

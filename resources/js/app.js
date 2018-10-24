@@ -1,13 +1,14 @@
-import Vue from 'vue'
-import store from '~/store'
-import router from '~/router'
-import i18n from '~/plugins/i18n'
-import App from '~/components/App'
+import Vue from "vue";
+import store from "~/store";
+import router from "~/router";
+import i18n from "~/plugins/i18n";
+import App from "~/components/App";
+// import Icon from "@mdi/font";
 
-import '~/plugins'
-import '~/components'
+import "~/plugins";
+import "~/components";
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -15,4 +16,6 @@ new Vue({
   store,
   router,
   ...App
-})
+});
+
+// Vue.use(Icon);
