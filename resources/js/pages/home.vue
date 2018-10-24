@@ -20,16 +20,7 @@
 
         <div class="col-md-10 m-auto">
           <div class="w-full inline-flex justify-center flex-wrap">
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Education</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Arts & Poetry</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Conferences</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Music</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Sports</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Technology</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Fitness</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Technology</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Technology</span></div>
-            <div class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">Technology</span></div>
+            <div v-for="category in categories" :key="category.category_id" class="category shadow-lg bg-white rounded-full py-2 px-4 justify-center m-2"><span class="text-accent">{{category.name}}</span></div>
           </div>
         </div>
       </div>
@@ -106,9 +97,10 @@
 </template>
 
 <script>
+import axios from "axios";
 import Event from "../components/Event";
 export default {
-  middleware: "auth",
+  // middleware: "auth",
 
   components: {
     Event
@@ -116,7 +108,8 @@ export default {
 
   data() {
     return {
-      img: require("../assets/background.jpg")
+      img: require("../assets/background.jpg"),
+      categories: []
     };
   },
 
@@ -124,6 +117,14 @@ export default {
     return {
       title: this.$t("home")
     };
+  },
+
+  mounted() {
+    axios.get("/api/categories").then(response => {
+      const { data } = response;
+      this.categories = data.data;
+      console.log(this.categories);
+    });
   }
 };
 </script>

@@ -10,7 +10,7 @@
       </button>
 
     <div id="navbarToggler" class="collapse navbar-collapse">
-      <ul class="navbar-nav mx-6">
+      <ul v-if="user" class="navbar-nav mx-6">
         <!-- <locale-dropdown/> -->
         <li class="nav-item mx-3">
           <router-link :to="{name: 'events.create'}" class="btn btn-primary rounded-full">

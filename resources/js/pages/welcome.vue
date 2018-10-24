@@ -106,6 +106,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Event from "../components/Event";
 export default {
   // middleware: "auth",
@@ -116,7 +117,8 @@ export default {
 
   data() {
     return {
-      img: require("../assets/background.jpg")
+      img: require("../assets/background.jpg"),
+      categories: []
     };
   },
 
@@ -124,6 +126,14 @@ export default {
     return {
       title: this.$t("home")
     };
+  },
+
+  mounted() {
+    axios.get("/api/categories").then(response => {
+      const { data } = response;
+      this.categories = data.data;
+      console.log(categories);
+    });
   }
 };
 </script>

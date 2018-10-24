@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 m-auto">
-        <div v-if="success_alert" class="bg-green-lightest border-l-4 border-green text-green-dark p-4" role="alert">
+        <div v-if="success_alert" class="shadow bg-green-lightest border-l-4 border-green text-green-dark p-4" role="alert">
           <p class="font-bold">Success</p>
           <p>The category has been successfully added! <router-link class="text-success font-bold" :to="{name: 'categories.all'}">View Categories</router-link></p>
         </div>
