@@ -33,3 +33,11 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::post('oauth/{driver}', 'Auth\OAuthController@redirectToProvider');
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
+
+Route::group(['prefix' => '/categories'], function () {
+    Route::get('', 'CategoryController@index');
+    Route::post('', 'CategoryController@store');
+    Route::get('/{category}', 'CategoryController@show');
+    Route::patch('/{category}', 'CategoryController@update');
+    Route::delete('/{category}', 'CategoryController@destroy');
+});

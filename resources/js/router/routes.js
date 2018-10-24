@@ -84,8 +84,16 @@ export default [
     children: [
       { path: "", name: "categories.all", component: CategoriesAll },
       { path: "create", name: "categories.create", component: CategoryCreate },
-      { path: "edit", name: "categories.edit", component: CategoryEdit },
-      { path: "delete", name: "categories.delete", component: CategoryDelete }
+      {
+        path: ":category/edit",
+        name: "categories.edit",
+        component: CategoryEdit
+      },
+      {
+        path: ":category/delete",
+        name: "categories.delete",
+        component: CategoryDelete
+      }
     ]
   },
 
