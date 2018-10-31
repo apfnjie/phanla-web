@@ -73,8 +73,8 @@ export default [
       { path: "", name: "events.all", component: EventsAll },
       { path: "create", name: "events.create", component: EventCreate },
       { path: ":event", name: "events.view", component: EventView },
-      { path: "edit", name: "events.edit", component: EventEdit },
-      { path: "delete", name: "events.delete", component: EventDelete }
+      { path: ":event/edit", name: "events.edit", component: EventEdit },
+      { path: ":event/delete", name: "events.delete", component: EventDelete }
     ]
   },
 

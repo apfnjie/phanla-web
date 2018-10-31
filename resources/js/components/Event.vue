@@ -1,11 +1,11 @@
 <template>
-<router-link :to="{ name: 'events.view', params: {event: 'EV-0001'}}">
+<router-link :to="{ name: 'events.view', params: {event: event.tag}}" class="event">
   <div class="max-w-md mb-16 bg-white rounded overflow-hidden card hover:border">
     <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
     <div class="info py-4 px-3">
-      <h5 class="event-title text-accent">Event title</h5>
-      <span class="event-date text-grey-darker"><fa icon="calendar-alt" fixed-width/> Wed, Oct 23, 5:00pm</span>
-      <span class="event-location text-grey-darker"><fa icon="map-marker-alt" fixed-width/> 86 Jabang Estate, West Coast Region</span>
+      <h5 class="event-title text-accent">{{event.name}}</h5>
+      <span class="event-date text-grey-darker"><fa icon="calendar-alt" fixed-width/> {{formatTime(event.time)}}</span>
+      <span class="event-location text-grey-darker"><fa icon="map-marker-alt" fixed-width/> {{event.location}}</span>
     </div>
   </div>
 </router-link>
@@ -13,11 +13,58 @@
 
 <script>
 export default {
-  name: "Event"
+  name: "Event",
+
+  data() {
+    return {
+      months: [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sept",
+        "Oct",
+        "Nov",
+        "Dec"
+      ],
+      day: ["Mon", "Tue", "Wed", "Thur", "Fri", "Sat", "Sun"]
+    };
+  },
+
+  props: {
+    event: {
+      type: Object,
+      required: true
+    }
+  },
+
+  methods: {
+    formatTime(time) {
+      time = new Date(time);
+      return (
+        this.day[time.getDay()] +
+        ", " +
+        this.months[time.getMonth()] +
+        " " +
+        time.getDate() +
+        ", " +
+        time.getHours() +
+        ":" +
+        time.getMinutes()
+      );
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+.event:hover {
+  text-decoration: none;
+}
 .event-title {
   font-weight: 600;
 }

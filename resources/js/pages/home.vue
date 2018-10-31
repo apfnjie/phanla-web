@@ -27,42 +27,24 @@
     </div>
   </div>
 
+  <div class="bg-tomato py-16 px-4 flex justify-center">
+    <p class="text-white call-to-action">Do you have an event? <router-link :to="{ name: 'events.create'}" class="ml-2 btn bg-white rounded shadow call-to-action">Register with us</router-link></p>
+  </div>
+
   <div class="bg-white py-16 px-4">
     <div class="container">
-      <h1 class="text-accent mb-5">Trending </h1>
+      <h1 class="text-accent mb-5">Events </h1>
       <div class="row">
-        <div class="col-md-4">
-          <Event />
-        </div>
-
-        <div class="col-md-4">
-          <Event />
-        </div>
-
-        <div class="col-md-4">
-          <Event />
-        </div>
-
-        <div class="col-md-4">
-          <Event />
-        </div>
-
-        <div class="col-md-4">
-          <Event />
-        </div>
-
-        <div class="col-md-4">
-          <Event />
+        <div v-for="data in events" :key="data.event_id" class="col-md-4">
+          <Event v-bind:event="data" />
         </div>
       </div>
     </div>
   </div>
 
-  <div class="bg-tomato py-16 px-4 flex justify-center">
-    <p class="text-white call-to-action">Do you have an event? <a href="" class="ml-2 btn bg-white rounded shadow call-to-action">Register with us</a></p>
-  </div>
 
-  <div class="bg-grey-lighter py-16 px-4">
+
+  <!-- <div class="bg-grey-lighter py-16 px-4">
     <div class="container">
       <h1 class="text-accent mb-5">Our Top Picks</h1>
       <div class="row">
@@ -91,7 +73,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 </div>
 </template>
@@ -100,7 +82,11 @@
 import axios from "axios";
 import Event from "../components/Event";
 export default {
-  // middleware: "auth",
+  metaInfo() {
+    return {
+      title: this.$t("home")
+    };
+  },
 
   components: {
     Event
@@ -109,22 +95,37 @@ export default {
   data() {
     return {
       img: require("../assets/background.jpg"),
-      categories: []
-    };
-  },
-
-  metaInfo() {
-    return {
-      title: this.$t("home")
+      categories: [],
+      events: [],
+      pagination: {
+        current_page: 1
+      }
     };
   },
 
   mounted() {
-    axios.get("/api/categories").then(response => {
-      const { data } = response;
-      this.categories = data.data;
-      console.log(this.categories);
-    });
+    this.index();
+    this.fetchCategories();
+  },
+
+  methods: {
+    async index() {
+      axios
+        .get("/api/events?page=" + this.pagination.current_page)
+        .then(response => {
+          const { data, status } = response;
+          this.events = data.data;
+          this.pagination = data.meta;
+        });
+    },
+
+    async fetchCategories() {
+      axios.get("/api/categories").then(response => {
+        const { data } = response;
+        this.categories = data.data;
+        console.log(this.categories);
+      });
+    }
   }
 };
 </script>

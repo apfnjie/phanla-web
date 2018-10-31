@@ -1,62 +1,36 @@
 <template>
 <div class="bg-accent">
-  <div class="container p-8">
+  <div class="container p-8 pb-1">
     <div class="sm:flex mb-4">
-      <div class="sm:w-1/4 h-auto">
-        <div class="text-orange mb-2">Orange</div>
+      <div class="sm:w-1/3 px-3 h-auto">
+        <div class="text-white mb-3 font-bold">PHANLA</div>
         <ul class="list-reset leading-normal">
-          <li class="hover:text-orange text-grey-darker">One</li>
-          <li class="hover:text-orange text-grey-darker">Two</li>
-          <li class="hover:text-orange text-grey-darker">Three</li>
-          <li class="hover:text-orange text-grey-darker">Four</li>
-          <li class="hover:text-orange text-grey-darker">Five</li>
-          <li class="hover:text-orange text-grey-darker">Six</li>
-          <li class="hover:text-orange text-grey-darker">Seven</li>
-          <li class="hover:text-orange text-grey-darker">Eight</li>
+          <li class="hover:text-grey-light text-grey-darker text-sm py-2">About Us</li>
+          <li class="hover:text-grey-light text-grey-darker text-sm py-2">Our Team</li>
         </ul>
       </div>
-      <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
-        <div class="text-blue mb-2">Blue</div>
-        <ul class="list-reset leading-normal">
-          <li class="hover:text-blue text-grey-darker">One</li>
-          <li class="hover:text-blue text-grey-darker">Two</li>
-          <li class="hover:text-blue text-grey-darker">Three</li>
-        </ul>
 
-        <div class="text-blue-light mb-2 mt-4">Blue-light</div>
+      <div class="sm:w-1/3 px-3 h-auto sm:mt-0 mt-8">
+        <div class="text-white mb-3 font-bold text-sm">CONNECT</div>
         <ul class="list-reset leading-normal">
-          <li class="hover:text-blue-light text-grey-darker">One</li>
-          <li class="hover:text-blue-light text-grey-darker">Two</li>
-          <li class="hover:text-blue-light text-grey-darker">Three</li>
+          <li class="hover:text-grey-light text-grey-darker text-sm py-2">Facebook</li>
+          <li class="hover:text-grey-light text-grey-darker text-sm py-2">Twitter</li>
         </ul>
-
       </div>
-      <div class="sm:w-1/4 h-auto sm:mt-0 mt-8">
-        <div class="text-green-dark mb-2">Green-dark</div>
-        <ul class="list-reset leading-normal">
-          <li class="hover:text-green-dark text-grey-darker">One</li>
-          <li class="hover:text-green-dark text-grey-darker">Two</li>
-          <li class="hover:text-green-dark text-grey-darker">Three</li>
-        </ul>
 
-        <div class="text-green-light mb-2 mt-4">Green-light</div>
+      <div class="sm:w-1/3 px-3 h-auto sm:mt-0 mt-8">
+        <div class="text-white mb-3 font-bold text-sm">CONTACT</div>
         <ul class="list-reset leading-normal">
-          <li class="hover:text-green-light text-grey-darker">One</li>
-          <li class="hover:text-green-light text-grey-darker">Two</li>
-          <li class="hover:text-green-light text-grey-darker">Three</li>
+          <li class="hover:text-grey-light border-b-1 text-grey-dark text-sm py-2">Phone: +220 3343008 / +220 7666047</li>
+          <li class="hover:text-grey-light border-b-1 text-grey-dark text-sm py-2">Email: info@phanla.com</li>
         </ul>
-
-      </div>
-      <div class="sm:w-1/2 sm:mt-0 mt-8 h-auto">
-        <div class="text-red-light mb-2">Newsletter</div>
-        <p class="text-grey-darker leading-normal">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, consectetur. </p>
-        <div class="mt-4 flex">
-          <input type="text" class="p-2 border border-grey-light round text-grey-dark text-sm h-auto" placeholder="Your email address">
-          <button class="bg-orange text-white rounded-sm h-auto text-xs p-3">Subscribe</button>
-        </div>
       </div>
 
     </div>
+
+      <div class=" flex-1 d-flex justify-center">
+        <p class="text-grey-dark text-sm">Copyright &copy; Phanla 2018</p>
+      </div>
   </div>
 </div>
 </template>
@@ -68,4 +42,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.list-reset li {
+  border-bottom: 1px solid #2f3b4d;
+}
+.list-reset li:last-child {
+  border-bottom: none;
+}
 </style>

@@ -12,34 +12,9 @@
 
     <div class="row">
       <div class="col-md-12">
-        <event-control />
-        <event-control />
-        <event-control />
-        <event-control />
+        <event-control v-bind:event="data" v-for="data in events" :key="data.event_id" />
         <div>
-          <ul class="pagination pagination-lg float-md-right">
-            <li class="page-item disabled">
-              <a class="page-link" href="#">&laquo;</a>
-            </li>
-            <li class="page-item active">
-              <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">4</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">5</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link" href="#">&raquo;</a>
-            </li>
-          </ul>
+          <pagination class="float-md-right" :pagination="pagination" @paginate="index()" :offset="4"></pagination>
         </div>
       </div>
     </div>
@@ -48,10 +23,47 @@
 </template>
 
 <script>
+import axios from "axios";
 import EventControl from "../../components/EventControl";
 export default {
+  metaInfo() {
+    return { title: "Events" };
+  },
+
+  middleware: "auth",
+
   components: {
     EventControl
+  },
+
+  data() {
+    return {
+      search_name: "",
+      pagination: {
+        current_page: 1
+      },
+      events: []
+    };
+  },
+
+  mounted() {
+    this.index();
+  },
+
+  methods: {
+    async index() {
+      axios
+        .get("/api/events?page=" + this.pagination.current_page, {
+          params: {
+            name: this.search_name
+          }
+        })
+        .then(response => {
+          this.events = response.data.data;
+          this.pagination = response.data.meta;
+          console.log(this.events);
+        });
+    }
   }
 };
 </script>

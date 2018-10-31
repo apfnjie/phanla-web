@@ -14,12 +14,18 @@ import {
   faCalendarAlt,
   faUserTag,
   faEdit,
-  faTrash
+  faTrash,
+  faPhone
 } from "@fortawesome/fontawesome-free-solid/shakable.es";
 
-import {} from "@fortawesome/fontawesome-free-regular/shakable.es";
+import { faEnvelope } from "@fortawesome/fontawesome-free-regular/shakable.es";
 
-import { faGithub } from "@fortawesome/fontawesome-free-brands/shakable.es";
+import {
+  faGithub,
+  faFacebookSquare,
+  faTwitter,
+  faInstagram
+} from "@fortawesome/fontawesome-free-brands/shakable.es";
 
 fontawesome.library.add(
   faUser,
@@ -32,7 +38,12 @@ fontawesome.library.add(
   faCalendarAlt,
   faUserTag,
   faEdit,
-  faTrash
+  faTrash,
+  faFacebookSquare,
+  faTwitter,
+  faInstagram,
+  faPhone,
+  faEnvelope
 );
 
 Vue.component("fa", FontAwesomeIcon);

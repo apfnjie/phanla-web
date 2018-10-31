@@ -41,3 +41,11 @@ Route::group(['prefix' => '/categories'], function () {
     Route::patch('/{category}', 'CategoryController@update');
     Route::delete('/{category}', 'CategoryController@destroy');
 });
+
+Route::group(['prefix' => '/events'], function () {
+    Route::get('', 'EventController@index');
+    Route::post('', 'EventController@store');
+    Route::get('/{event}', 'EventController@show');
+    Route::patch('/{event}', 'EventController@update');
+    Route::delete('/{event}', 'EventController@destroy');
+});
