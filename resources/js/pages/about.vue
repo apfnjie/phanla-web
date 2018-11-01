@@ -8,6 +8,7 @@
         </div>
 
         <div class="col-md-6 pt-5">
+          <h1 class="text-right text-tomato mb-5 underline">About Us</h1>
           <h3 class="text-right mb-5 text-accent font-bold">We are Phanla.</h3>
 
           <h4 class="text-right text-accent leading-normal">We recognize the power that resides in a group of commited people with a shared interest</h4>

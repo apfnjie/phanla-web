@@ -5,7 +5,7 @@
       <div class="sm:w-1/3 px-3 h-auto">
         <div class="text-white mb-3 font-bold">PHANLA</div>
         <ul class="list-reset leading-normal">
-          <li class="hover:text-grey-light text-grey-darker text-sm py-2">About Us</li>
+          <li class=" text-sm py-2"><router-link class="hover:text-grey-light text-grey-darker" :to="{name: 'about'}">About Us</router-link></li>
           <li class="hover:text-grey-light text-grey-darker text-sm py-2">Our Team</li>
         </ul>
       </div>

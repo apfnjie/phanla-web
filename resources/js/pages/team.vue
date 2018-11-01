@@ -1,7 +1,11 @@
 <template>
 <div>
   <div class="bg-white">
-    <h1>Our Team</h1>
+    <div class="container">
+      <div class="row">
+        div.
+      </div>
+    </div>
   </div>
 </div>
 </template>

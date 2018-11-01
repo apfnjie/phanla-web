@@ -30,9 +30,9 @@
         <li class="nav-item mx-3">
           <router-link :to="{name: 'about'}" class="nav-link text-accent">About Us</router-link>
         </li>
-        <li class="nav-item mx-3">
+        <!-- <li class="nav-item mx-3">
           <router-link :to="{name: 'team'}" class="nav-link text-accent">Our Team</router-link>
-        </li>
+        </li> -->
       </ul>
 
       <ul class="navbar-nav ml-auto">
@@ -59,8 +59,14 @@
         <!-- Guest -->
         <template v-else>
           <li class="nav-item">
-            <router-link :to="{ name: 'login' }" class="btn btn-outline-primary font-bold">
+            <router-link :to="{ name: 'login' }" class="btn btn-primary font-bold">
               Sign In
+            </router-link>
+          </li>
+
+          <li class="nav-item">
+            <router-link :to="{ name: 'register' }" class="sm:ml-3 btn btn-outline-info font-bold">
+              Sign Up
             </router-link>
           </li>
         </template>
