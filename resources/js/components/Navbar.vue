@@ -1,8 +1,9 @@
 <template>
 <nav class="navbar navbar-light navbar-expand-md py-4">
-  <div class="container-fluid">
+  <div class="container">
     <router-link :to="{ name: user ? 'home' : 'welcome' }" class="mr-16">
-      {{ appName }}
+      <img src="../assets/logo.png" alt="" class=""  width="200">
+      <!-- {{ appName }} -->
     </router-link>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false">
@@ -18,10 +19,19 @@
           </router-link>
         </li>
         <li class="nav-item mx-3">
-          <router-link :to="{name: 'events.all'}" class="nav-link">Events</router-link>
+          <router-link :to="{name: 'events.all'}" class="nav-link text-accent">Events</router-link>
         </li>
         <li class="nav-item mx-3">
-          <router-link :to="{name: 'categories.all'}" class="nav-link">Categories</router-link>
+          <router-link :to="{name: 'categories.all'}" class="nav-link text-accent">Categories</router-link>
+        </li>
+      </ul>
+
+      <ul v-else class="navbar-nav mx-6">
+        <li class="nav-item mx-3">
+          <router-link :to="{name: 'events.all'}" class="nav-link text-accent">About Us</router-link>
+        </li>
+        <li class="nav-item mx-3">
+          <router-link :to="{name: 'categories.all'}" class="nav-link text-accent">Our Team</router-link>
         </li>
       </ul>
 
@@ -30,7 +40,7 @@
         <li v-if="user" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-dark"
                href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img :src="user.photo_url" class="rounded-circle profile-photo mr-1">
+              <!-- <img :src="user.photo_url" class="rounded-circle profile-photo mr-1"> -->
               {{ user.name }}
             </a>
           <div class="dropdown-menu">
@@ -49,7 +59,7 @@
         <!-- Guest -->
         <template v-else>
           <li class="nav-item">
-            <router-link :to="{ name: 'login' }" class="btn btn-outline-primary">
+            <router-link :to="{ name: 'login' }" class="btn btn-outline-primary font-bold">
               Sign In
             </router-link>
           </li>

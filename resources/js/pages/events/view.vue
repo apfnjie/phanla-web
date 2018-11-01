@@ -1,15 +1,15 @@
 <template>
 <div>
-  <div class="bg-grey-lighter d-flex">
+  <div class="bg-grey-lightest d-flex">
     <div class="flex-auto w-1/2">
       <img src="https://tailwindcss.com/img/card-top.jpg" alt="" height="100px">
     </div>
 
     <div class="bg-grey-lighter flex-auto w-1/2 p-5">
       <h6 class="block text-grey-darker text-sm mb-3 font-bold"><fa icon="calendar-alt" fixed-width/> {{formatTime(event.time)}}</h6>
-      <h2 class="text-accent event-title block text-4x1 mb-3">{{event.name}}</h2>
+      <h2 class="text-accent event-title block text-4x1 mb-3 font-bold">{{event.name}}</h2>
       <h6 class="block text-grey-darker text-sm font-bold mb-3"><fa icon="map-marker-alt" fixed-width/> {{event.location}}</h6>
-      <h6 class="block text-grey-darker text-sm mb-5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;by {{event.created_by.name}}</h6>
+      <h6 class="block text-grey-darker text-sm mb-5">&nbsp;&nbsp;&nbsp;by {{event.created_by.name}}</h6>
       <h4 class="text-primary">&nbsp;&nbsp;&nbsp;Free</h4>
     </div>
   </div>
