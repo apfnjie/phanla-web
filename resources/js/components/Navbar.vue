@@ -28,10 +28,10 @@
 
       <ul v-else class="navbar-nav mx-6">
         <li class="nav-item mx-3">
-          <router-link :to="{name: 'events.all'}" class="nav-link text-accent">About Us</router-link>
+          <router-link :to="{name: 'about'}" class="nav-link text-accent">About Us</router-link>
         </li>
         <li class="nav-item mx-3">
-          <router-link :to="{name: 'categories.all'}" class="nav-link text-accent">Our Team</router-link>
+          <router-link :to="{name: 'team'}" class="nav-link text-accent">Our Team</router-link>
         </li>
       </ul>
 

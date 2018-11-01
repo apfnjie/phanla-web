@@ -1,4 +1,7 @@
 const Welcome = () => import("~/pages/home").then(m => m.default || m);
+const AboutUs = () => import("~/pages/about").then(m => m.default || m);
+const OurTeam = () => import("~/pages/team").then(m => m.default || m);
+
 const Login = () => import("~/pages/auth/login").then(m => m.default || m);
 const Register = () =>
   import("~/pages/auth/register").then(m => m.default || m);
@@ -38,6 +41,8 @@ const CategoryDelete = () =>
 
 export default [
   { path: "/", name: "welcome", component: Welcome },
+  { path: "/about-us", name: "about", component: AboutUs },
+  { path: "/our-team", name: "team", component: OurTeam },
 
   { path: "/login", name: "login", component: Login },
   { path: "/register", name: "register", component: Register },
