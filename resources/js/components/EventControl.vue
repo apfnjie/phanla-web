@@ -96,7 +96,7 @@ export default {
         ", " +
         time.getHours() +
         ":" +
-        time.getMinutes()
+        (time.getMinutes() === 0 ? "00" : time.getMinutes())
       );
     }
   }

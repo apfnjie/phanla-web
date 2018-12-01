@@ -1,69 +1,80 @@
 <template>
-<div class="bg-grey-lighter py-10">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-md-10 m-auto">
-        <div class="border bg-white rounded p-6">
-          <h4 class="text-danger mb-5">Delete Event</h4>
-          <form @submit.prevent="destroy" @keydown="form.onKeydown($event)">
-            <div class="row mb-3">
-              <div class="col-md-8">
-                <div class="form-group">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Event Title</label>
-                  <input v-model="form.name" disabled type="text" class="form-control"/>
-                </div>
-              </div>
-            </div>
+  <div class="bg-grey-lighter py-10">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-10 m-auto">
+          <!-- Success alert -->
+          <success v-if="success" message="Your have successfully deleted the event"/>
 
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Venue</label>
-                  <input v-model="form.location" disabled type="text" class="form-control"/>
+          <!-- Form -->
+          <div class="border bg-white rounded p-6">
+            <h4 class="text-danger mb-5">Delete Event</h4>
+            <form @submit.prevent="destroy" @keydown="form.onKeydown($event)">
+              <div class="row mb-3">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Event Title</label>
+                    <input v-model="form.name" disabled type="text" class="form-control">
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Date & Time</label>
-                  <input v-model="form.time" disabled type="datetime-local" class="form-control"/>
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Venue</label>
+                    <input v-model="form.location" disabled type="text" class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Date & Time</label>
+                    <input v-model="form.time" disabled type="datetime-local" class="form-control">
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Fee (D)</label>
+                    <input v-model="form.fee" disabled type="number" class="form-control" value="0">
+                  </div>
                 </div>
               </div>
 
-              <div class="col-md-2">
-                <div class="form-group">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Fee (D)</label>
-                  <input v-model="form.fee" disabled type="number" class="form-control" value="0"/>
+              <div class="row mb-3">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Description</label>
+                    <textarea
+                      v-model="form.description"
+                      disabled
+                      name
+                      rows="5"
+                      class="form-control"
+                    ></textarea>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="row mb-3">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label class="block text-grey-darker text-sm font-bold mb-2">Description</label>
-                  <textarea v-model="form.description" disabled name="" rows="5" class="form-control"></textarea>
+              <div v-if="!success" class="row">
+                <div class="col-md-12">
+                  <router-link
+                    :to="{name: 'events.all'}"
+                    class="btn btn-link ml-3 float-md-right"
+                  >Cancel</router-link>
+
+                  <v-button class="btn btn-danger float-md-right">
+                    <fa icon="trash" fixed-width/>Delete Event
+                  </v-button>
                 </div>
               </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <router-link :to="{name: 'events.all'}" class="btn btn-link ml-3 float-md-right">
-                  Cancel
-                </router-link>
-
-                <v-button class="btn btn-danger float-md-right">
-                  <fa icon="trash" fixed-width /> Delete Event
-                </v-button>
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -80,6 +91,7 @@ export default {
 
   data() {
     return {
+      success: false,
       form: new Form({
         name: "",
         location: "",
@@ -113,7 +125,10 @@ export default {
       const { data, status } = await this.form.delete(
         "/api/events/" + this.$route.params.event
       );
-      console.log(data);
+      if (status === 204) {
+        this.success = true;
+      }
+      console.log(data, status);
     }
   }
 };

@@ -1,14 +1,24 @@
 <template>
-<router-link :to="{ name: 'events.view', params: {event: event.tag}}" class="event">
-  <div class="max-w-md mb-16 bg-white rounded overflow-hidden card hover:border">
-    <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
-    <div class="info py-4 px-3">
-      <h5 class="event-title text-accent">{{event.name}}</h5>
-      <span class="event-date text-grey-darker"><fa icon="calendar-alt" fixed-width/> {{formatTime(event.time)}}</span>
-      <span class="event-location text-grey-darker"><fa icon="map-marker-alt" fixed-width/> {{event.location}}</span>
+  <router-link :to="{ name: 'events.view', params: {event: event.tag}}" class="event">
+    <div class="max-w-md mb-16 bg-white rounded overflow-hidden card hover:border">
+      <img
+        class="w-full"
+        src="https://tailwindcss.com/img/card-top.jpg"
+        alt="Sunset in the mountains"
+      >
+      <div class="info py-4 px-3">
+        <h5 class="event-title text-accent">{{event.name}}</h5>
+        <span class="event-date text-grey-darker">
+          <fa icon="calendar-alt" fixed-width/>
+          {{formatTime(event.time)}}
+        </span>
+        <span class="event-location text-grey-darker">
+          <fa icon="map-marker-alt" fixed-width/>
+          {{event.location}}
+        </span>
+      </div>
     </div>
-  </div>
-</router-link>
+  </router-link>
 </template>
 
 <script>
@@ -54,7 +64,7 @@ export default {
         ", " +
         time.getHours() +
         ":" +
-        time.getMinutes()
+        (time.getMinutes() === 0 ? "00" : time.getMinutes())
       );
     }
   }

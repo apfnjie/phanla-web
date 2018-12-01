@@ -1,25 +1,35 @@
 <template>
-<div class="bg-grey-lighter py-10">
-  <div class="container">
-    <div class="row mb-8">
-      <div class="col-md-8 m-auto">
-        <div class="search d-flex overflow-hidden">
-          <input type="text" class="form-input border flex-grow-1 text-accent" placeholder="Search Events"/>
-          <button class="form-button btn-primary rounded-l-none">Search</button>
+  <div class="bg-grey-lighter py-10">
+    <div class="container">
+      <div class="row mb-8">
+        <div class="col-md-8 m-auto">
+          <div class="search d-flex overflow-hidden">
+            <input
+              @keyup="index"
+              v-model="search"
+              type="text"
+              class="form-input border flex-grow-1 text-accent"
+              placeholder="Search Events"
+            >
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <event-control v-bind:event="data" v-for="data in events" :key="data.event_id" />
-        <div>
-          <pagination class="float-md-right" :pagination="pagination" @paginate="index()" :offset="4"></pagination>
+      <div class="row">
+        <div class="col-md-12">
+          <event-control v-bind:event="data" v-for="data in events" :key="data.event_id"/>
+          <div>
+            <pagination
+              class="float-md-right"
+              :pagination="pagination"
+              @paginate="index()"
+              :offset="4"
+            ></pagination>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -38,7 +48,7 @@ export default {
 
   data() {
     return {
-      search_name: "",
+      search: "",
       pagination: {
         current_page: 1
       },
@@ -55,7 +65,7 @@ export default {
       axios
         .get("/api/events?page=" + this.pagination.current_page, {
           params: {
-            name: this.search_name
+            name: this.search
           }
         })
         .then(response => {

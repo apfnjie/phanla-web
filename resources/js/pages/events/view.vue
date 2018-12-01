@@ -1,30 +1,43 @@
 <template>
-<div>
-  <div class="bg-grey-lightest d-flex">
-    <div class="flex-auto w-1/2">
-      <img src="https://tailwindcss.com/img/card-top.jpg" alt="" height="100px">
-    </div>
+  <div>
+    <div class="bg-grey-lightest d-flex">
+      <div class="flex-auto w-1/2">
+        <img src="https://tailwindcss.com/img/card-top.jpg" alt height="100px">
+      </div>
 
-    <div class="bg-grey-lighter flex-auto w-1/2 p-5">
-      <h6 class="block text-grey-darker text-sm mb-3 font-bold"><fa icon="calendar-alt" fixed-width/> {{formatTime(event.time)}}</h6>
-      <h2 class="text-accent event-title block text-4x1 mb-3 font-bold">{{event.name}}</h2>
-      <h6 class="block text-grey-darker text-sm font-bold mb-3"><fa icon="map-marker-alt" fixed-width/> {{event.location}}</h6>
-      <h6 class="block text-grey-darker text-sm mb-5">&nbsp;&nbsp;&nbsp;by {{event.created_by.name}}</h6>
-      <h4 class="text-primary">&nbsp;&nbsp;&nbsp;Free</h4>
+      <div class="bg-grey-lighter flex-auto w-1/2 p-5">
+        <h6 class="block text-grey-darker text-sm mb-3 font-bold">
+          <fa icon="calendar-alt" fixed-width/>
+          {{formatTime(event.time)}}
+        </h6>
+        <h2 class="text-accent event-title block text-4x1 mb-3 font-bold">{{event.name}}</h2>
+        <h6 class="block text-grey-darker text-sm font-bold mb-3">
+          <fa icon="map-marker-alt" fixed-width/>
+          {{event.location}}
+        </h6>
+        <h6
+          class="block text-grey-darker text-sm mb-5"
+        >&nbsp;&nbsp;&nbsp;by {{event.created_by.name}}</h6>
+        <template v-if="event.fee === null || event.fee === 0">
+          <h4 class="text-primary">&nbsp;&nbsp;&nbsp;Free</h4>
+        </template>
+
+        <template v-else>
+          <h4 class="text-primary">&nbsp;&nbsp;&nbsp;{{'D' + event.fee}}</h4>
+        </template>
+      </div>
     </div>
-  </div>
-  <div class="bg-white pb-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 bg-white m-auo p-5 border border-grey-lighter shadow -mt-16">
-          <h5 class="block text-grey-darker text-sm font-bold mb-3">Description</h5>
-          <p class="text-sm">{{event.description}}</p>
+    <div class="bg-white pb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 bg-white m-auo p-5 border border-grey-lighter shadow -mt-16">
+            <h5 class="block text-grey-darker text-sm font-bold mb-3">Description</h5>
+            <p class="text-sm">{{event.description}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-</div>
 </template>
 
 <script>
