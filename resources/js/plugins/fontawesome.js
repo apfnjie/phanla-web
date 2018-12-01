@@ -15,7 +15,8 @@ import {
   faUserTag,
   faEdit,
   faTrash,
-  faPhone
+  faPhone,
+  faThumbsUp
 } from "@fortawesome/fontawesome-free-solid/shakable.es";
 
 import { faEnvelope } from "@fortawesome/fontawesome-free-regular/shakable.es";
@@ -43,7 +44,8 @@ fontawesome.library.add(
   faTwitter,
   faInstagram,
   faPhone,
-  faEnvelope
+  faEnvelope,
+  faThumbsUp
 );
 
 Vue.component("fa", FontAwesomeIcon);

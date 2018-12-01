@@ -7,6 +7,7 @@ use App\Filters\EventFilter;
 use App\Http\Resources\EventResource;
 use App\Http\Requests\EventStore;
 use App\Http\Requests\EventUpdate;
+use App\Http\Requests\EventApprove;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -79,7 +80,7 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Event  $event
      * @return \Illuminate\Http\Response
      */
     public function update(EventUpdate $request, Event $event)
@@ -89,6 +90,23 @@ class EventController extends Controller
         }
         return response()->json([
             'errors' => ['message' => 'Event was not updated successfully']
+        ], 520);
+    }
+
+    /**
+     * Approve the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Event  $event
+     * @return \Illuminate\Http\Response
+     */
+    public function approve(EventApprove $request, Event $event)
+    {
+        if ($event->update($request->all())) {
+            return new EventResource($event);
+        }
+        return response()->json([
+            'errors' => ['message' => 'Event approval failed']
         ], 520);
     }
 

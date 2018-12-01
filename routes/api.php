@@ -47,5 +47,6 @@ Route::group(['prefix' => '/events'], function () {
     Route::post('', 'EventController@store');
     Route::get('/{event}', 'EventController@show');
     Route::patch('/{event}', 'EventController@update');
+    Route::patch('/{event}/approve', 'EventController@approve');
     Route::delete('/{event}', 'EventController@destroy');
 });

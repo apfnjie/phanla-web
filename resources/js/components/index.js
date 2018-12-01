@@ -1,4 +1,5 @@
 import Vue from "vue";
+import Success from './Success';
 import Card from "./Card";
 import Child from "./Child";
 import Button from "./Button";
@@ -15,6 +16,7 @@ import { HasError, AlertError, AlertSuccess } from "vform";
   HasError,
   AlertError,
   AlertSuccess,
+  Success,
   Pagination
 ].forEach(Component => {
   Vue.component(Component.name, Component);

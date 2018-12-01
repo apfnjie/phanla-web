@@ -1,35 +1,48 @@
 <template>
-<div class="card  mb-2">
-  <div class="bg-white p-3 d-flex justify-center">
-    <div class="flex-1 py-2">
-      <span class="text-accent event-title">{{event.name}}</span>
-    </div>
-
-    <div class="flex-1 d-flex pl-2">
-      <div class="justify-center flex-grow-1 py-2 d-flex">
-        <div class="flex-grow-1  justify-center">
-          <span class="event-date">{{formatTime(event.time)}}</span> at
-        <span class="event-venue text-grey-dark">{{event.location}}</span>
-        </div>
-
-
-        <div class="py-1">
-          <router-link :to="{name: 'events.edit', params: { event: event.tag}}" class="btn btn-sm bg-blue flex justify-center hover:bg-blue-dark text-white font-bold rounded mx-2">
-            <fa icon="edit" fixed-width />
-          </router-link>
-
-          <router-link :to="{name: 'events.delete', params: { event: event.tag}}" class="btn btn-sm bg-red hover:bg-red-dark text-white font-bold rounded mx-2">
-            <fa icon="trash" fixed-width />
-          </router-link>
-        </div>
+  <div class="card mb-2">
+    <div class="bg-white p-3 d-flex justify-center">
+      <div class="flex-1 py-2">
+        <span class="text-accent event-title">{{event.name}}</span>
       </div>
 
+      <div class="flex-1 d-flex pl-2">
+        <div class="justify-center flex-grow-1 py-2 d-flex">
+          <div class="flex-grow-1 justify-center">
+            <span class="event-date">{{formatTime(event.time)}}</span> at
+            <span class="event-venue text-grey-dark">{{event.location}}</span>
+          </div>
+
+          <div class="py-1">
+            <button
+              v-if="event.status != 'Active'"
+              @click.prevent="approve"
+              class="btn btn-sm bg-green flex justify-center hover:bg-green-dark text-white font-bold rounded mx-2"
+            >
+              <fa icon="thumbs-up" fixed-width/>
+            </button>
+
+            <router-link
+              :to="{name: 'events.edit', params: { event: event.tag}}"
+              class="btn btn-sm bg-blue flex justify-center hover:bg-blue-dark text-white font-bold rounded mx-2"
+            >
+              <fa icon="edit" fixed-width/>
+            </router-link>
+
+            <router-link
+              :to="{name: 'events.delete', params: { event: event.tag}}"
+              class="btn btn-sm bg-red hover:bg-red-dark text-white font-bold rounded mx-2"
+            >
+              <fa icon="trash" fixed-width/>
+            </router-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "EventControl",
 
@@ -61,6 +74,17 @@ export default {
   },
 
   methods: {
+    async approve() {
+      const { data, status } = await axios.patch(
+        "/api/events/" + this.event.tag + "/approve",
+        { status: 2 }
+      );
+      if (status === 200) {
+        this.event.status = "Active";
+      }
+      console.log(data, status);
+    },
+
     formatTime(time) {
       time = new Date(time);
       return (
