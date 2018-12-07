@@ -1,34 +1,45 @@
 <template>
-<div class="container">
-  <div class="row">
-    <div class="col-md-5 m-auto">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5 m-auto">
+        <div class="bg-white px-5 pt-16 pb-8 mb-4">
+          <h5 class="text-accent text-center mb-4">Enter your credentials</h5>
+          <form @submit.prevent="login" @keydown="form.onKeydown($event)">
+            <!-- Email -->
+            <div class="form-group mb-4">
+              <label class="block text-accent text-sm mb-2">{{ $t('email') }}</label>
+              <input
+                v-model="form.email"
+                :class="{ 'is-invalid': form.errors.has('email') }"
+                class="form-control"
+                type="email"
+                name="email"
+              >
+              <has-error :form="form" field="email"/>
+            </div>
 
-      <div class="bg-white px-5 pt-16 pb-8 mb-4">
-        <h5 class="text-accent text-center mb-4">Enter your credentials</h5>
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group mb-4">
-            <label class="block text-accent text-sm mb-2">{{ $t('email') }}</label>
-            <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-            <has-error :form="form" field="email" />
-          </div>
+            <!-- Password -->
+            <div class="form-group mb-4">
+              <label class="block text-accent text-sm mb-2">{{ $t('password') }}</label>
+              <input
+                v-model="form.password"
+                :class="{ 'is-invalid': form.errors.has('password') }"
+                class="form-control"
+                type="password"
+                name="password"
+              >
+              <has-error :form="form" field="password"/>
+            </div>
 
-          <!-- Password -->
-          <div class="form-group mb-4">
-            <label class="block text-accent text-sm mb-2">{{ $t('password') }}</label>
-            <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-            <has-error :form="form" field="password" />
-          </div>
-
-          <div class="flex items-center justify-between">
-            <v-button :loading="form.busy" class="btn-block btn-primary" type="button">Sign In</v-button>
-          </div>
-        </form>
-        <!-- </div> -->
+            <div class="flex items-center justify-between">
+              <v-button :loading="form.busy" class="btn-block btn-primary" type="button">Sign In</v-button>
+            </div>
+          </form>
+          <!-- </div> -->
+        </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>

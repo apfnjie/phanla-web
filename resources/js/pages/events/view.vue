@@ -2,7 +2,11 @@
   <div>
     <div class="bg-grey-lightest d-flex">
       <div class="flex-auto w-1/2">
-        <img src="https://tailwindcss.com/img/card-top.jpg" alt height="100px">
+        <img
+          :src="(event.banner != null) ? event.banner : 'https://www.starjournalnow.com/wp-content/uploads/2018/07/EVENTS-GRAPHIC_web.jpg'"
+          alt
+          height="100px"
+        >
       </div>
 
       <div class="bg-grey-lighter flex-auto w-1/2 p-5">

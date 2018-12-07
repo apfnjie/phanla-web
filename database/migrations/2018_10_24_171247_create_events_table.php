@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->double('fee', 8, 2)->nullable();
             $table->tinyInteger('status');
+            $table->string('banner')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

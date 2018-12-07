@@ -2,8 +2,8 @@
   <router-link :to="{ name: 'events.view', params: {event: event.tag}}" class="event">
     <div class="max-w-md mb-16 bg-white rounded overflow-hidden card hover:border">
       <img
-        class="w-full"
-        src="https://tailwindcss.com/img/card-top.jpg"
+        class="h-48"
+        :src="(event.banner != null) ? event.banner : 'https://www.starjournalnow.com/wp-content/uploads/2018/07/EVENTS-GRAPHIC_web.jpg'"
         alt="Sunset in the mountains"
       >
       <div class="info py-4 px-3">

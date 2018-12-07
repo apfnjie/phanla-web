@@ -29,6 +29,7 @@ class EventUpdate extends FormRequest
             'location' => 'required',
             'description' => 'required',
             'fee' => 'nullable',
+            'banner' => 'nullable|image',
         ];
     }
 }

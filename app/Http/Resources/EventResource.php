@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventResource extends JsonResource
@@ -22,6 +23,7 @@ class EventResource extends JsonResource
             'time' => $this->time,
             'description' => $this->description,
             'fee' => $this->fee,
+            'banner' => $this->banner != null ? Storage::url($this->banner) : null,
             'created_by' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,

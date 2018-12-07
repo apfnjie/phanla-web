@@ -22,7 +22,7 @@ class Event extends Model
      * @var array
      */
     protected $fillable = [
-        'tag', 'name', 'location', 'time', 'description', 'user_id', 'fee', 'status',
+        'tag', 'name', 'location', 'time', 'description', 'user_id', 'fee', 'status', 'banner'
     ];
 
     protected $dates = [
@@ -32,5 +32,10 @@ class Event extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function categories()
+    {
+        return $this->hasMany('App\Category');
     }
 }

@@ -11,6 +11,22 @@
             <h4 class="text-accent mb-5">Create Event</h4>
             <form @submit.prevent="store" @keydown="form.onKeydown($event)">
               <div class="row mb-3">
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Banner</label>
+                    <input
+                      @change="addBanner"
+                      name="banner"
+                      type="file"
+                      :class="{ 'is-invalid': form.errors.has('banner') }"
+                      class="form-control"
+                    >
+                    <has-error :form="form" field="banner"/>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
                 <div class="col-md-8">
                   <div class="form-group">
                     <label class="block text-grey-darker text-sm font-bold mb-2">Event Title</label>
@@ -109,6 +125,7 @@
 
 <script>
 import Form from "vform";
+import objectToFormData from "object-to-formdata";
 export default {
   metaInfo() {
     return {
@@ -122,6 +139,7 @@ export default {
     return {
       success: false,
       form: new Form({
+        banner: null,
         name: "",
         location: "",
         time: "",
@@ -134,11 +152,32 @@ export default {
 
   methods: {
     async store() {
-      const { data, status } = await this.form.post("/api/events");
-      if (status === 201) {
-        this.success = true;
-      }
-      console.log(data, status);
+      this.form
+        .submit("post", "/api/events", {
+          transformRequest: [
+            function(data, headers) {
+              return objectToFormData(data);
+            }
+          ],
+          onUploadProgress: e => {
+            this.form.busy = true;
+          }
+        })
+        .then(response => {
+          const { data, status } = response;
+          console.log("Create event", data, status);
+          this.success = true;
+          window.scrollTo(0, 0);
+          setTimeout(() => {
+            this.$router.push({ name: "events.all" });
+          }, 1000);
+        });
+    },
+
+    addBanner() {
+      const file = event.target.files[0];
+      // Do some client side validation...
+      this.form.banner = file;
     }
   }
 };

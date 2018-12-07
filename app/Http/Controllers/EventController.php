@@ -8,6 +8,7 @@ use App\Http\Resources\EventResource;
 use App\Http\Requests\EventStore;
 use App\Http\Requests\EventUpdate;
 use App\Http\Requests\EventApprove;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -41,12 +42,14 @@ class EventController extends Controller
      */
     public function store(EventStore $request)
     {
-        // TODO Rename event banner
+        // Get event banner
+        $filename = $request->banner != null ?  Storage::putFile('banners/', $request->banner) : null;
 
         $data = array_merge($request->all(), [
             'user_id' => $request->user()->id,
             'tag' => substr(md5(microtime()), 0, 5),
             'status' => 1,
+            'banner' => $filename
         ]);
 
         $event = Event::create($data);
@@ -85,7 +88,13 @@ class EventController extends Controller
      */
     public function update(EventUpdate $request, Event $event)
     {
-        if ($event->update($request->all())) {
+        $filename = $request->banner != null ?  Storage::putFile('banners/', $request->banner) : $event->banner;
+
+        if ($request->banner != null) {
+            Storage::delete($event->banner);
+        }
+
+        if ($event->update(array_merge($request->all(), ['banner' => $filename]))) {
             return new EventResource($event);
         }
         return response()->json([
