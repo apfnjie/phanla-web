@@ -129,7 +129,8 @@ export default {
       axios
         .get("/api/events?page=" + this.pagination.current_page, {
           params: {
-            name: this.search
+            name: this.search,
+            status: 2
           }
         })
         .then(response => {

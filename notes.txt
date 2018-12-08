@@ -1,4 +1,3 @@
-1. Filter events by status
 2. Add multiple categories for events
 3. Implement admin roles
 4. Filter events by categories

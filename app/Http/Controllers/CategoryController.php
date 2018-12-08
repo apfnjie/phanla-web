@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\CategoryEvent;
 use App\Filters\CategoryFilter;
 use App\Http\Resources\CategoryResource;
 use App\Http\Requests\CategoryStore;
@@ -49,7 +50,6 @@ class CategoryController extends Controller
     public function store(CategoryStore $request)
     {
         $category = Category::create($request->all());
-
         return new CategoryResource($category);
     }
 

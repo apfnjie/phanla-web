@@ -37,7 +37,7 @@ class EventController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\EventStore  $request
      * @return \Illuminate\Http\Response
      */
     public function store(EventStore $request)
@@ -53,6 +53,14 @@ class EventController extends Controller
         ]);
 
         $event = Event::create($data);
+
+        // Add Categories
+        foreach($request->categories as $category) {
+            Categoryevent::create([
+                'event_id' => $event->id,
+                'category_id' => $category
+            ]);
+        }
 
         return new EventResource($event);
     }

@@ -139,6 +139,7 @@ export default {
     return {
       success: false,
       form: new Form({
+        categories: [],
         banner: null,
         name: "",
         location: "",
