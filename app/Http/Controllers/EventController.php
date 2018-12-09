@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\CategoryEvent;
 use App\Filters\EventFilter;
 use App\Http\Resources\EventResource;
 use App\Http\Requests\EventStore;
@@ -52,15 +53,12 @@ class EventController extends Controller
             'banner' => $filename
         ]);
 
+        // dd($request->categories);   
+
         $event = Event::create($data);
 
-        // Add Categories
-        foreach($request->categories as $category) {
-            Categoryevent::create([
-                'event_id' => $event->id,
-                'category_id' => $category
-            ]);
-        }
+        // Attach categories
+        $event->categories()->sync($request->categories);
 
         return new EventResource($event);
     }
@@ -103,6 +101,9 @@ class EventController extends Controller
         }
 
         if ($event->update(array_merge($request->all(), ['banner' => $filename]))) {
+            // Attach categories
+            $event->categories()->sync($request->categories);
+            
             return new EventResource($event);
         }
         return response()->json([

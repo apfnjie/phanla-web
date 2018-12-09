@@ -14,4 +14,9 @@ class Category extends Model
     protected $fillable = [
         'name', 'description',
     ];
+
+    public function events()
+    {
+        return $this->belongsToMany('App\Event', 'category_events', 'category_id', 'event_tag');
+    }
 }

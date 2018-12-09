@@ -43,6 +43,29 @@
               </div>
 
               <div class="row mb-3">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="block text-grey-darker text-sm font-bold mb-2">Tags</label>
+                    <multi-select
+                      v-model="tags"
+                      track-by="category_id"
+                      label="name"
+                      placeholder="Select one"
+                      :max="3"
+                      :multiple="true"
+                      :options="categories"
+                      :allow-empty="true"
+                    >
+                      <template slot="singleLabel" slot-scope="{ option }">
+                        <strong>{{ option.name }}</strong>
+                        <!-- <strong>{{ option.language }}</strong> -->
+                      </template>
+                    </multi-select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mb-3">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="block text-grey-darker text-sm font-bold mb-2">Venue</label>
@@ -125,6 +148,8 @@
 
 <script>
 import Form from "vform";
+import axios from "axios";
+import MultiSelect from "vue-multiselect";
 import objectToFormData from "object-to-formdata";
 export default {
   metaInfo() {
@@ -133,11 +158,17 @@ export default {
     };
   },
 
+  components: {
+    MultiSelect
+  },
+
   middleware: "auth",
 
   data() {
     return {
       success: false,
+      categories: [],
+      tags: [],
       form: new Form({
         categories: [],
         banner: null,
@@ -151,8 +182,17 @@ export default {
     };
   },
 
+  created() {
+    axios.get("/api/categories?all").then(response => {
+      const { data, status } = response;
+      console.log("Home Categories", data, status);
+      this.categories = data.data;
+    });
+  },
+
   methods: {
     async store() {
+      this.setCategories();
       this.form
         .submit("post", "/api/events", {
           transformRequest: [
@@ -179,10 +219,14 @@ export default {
       const file = event.target.files[0];
       // Do some client side validation...
       this.form.banner = file;
+    },
+
+    setCategories() {
+      this.form.categories = this.tags.map(tag => tag.category_id);
+      console.log(this.form.categories);
     }
   }
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

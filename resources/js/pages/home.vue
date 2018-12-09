@@ -137,6 +137,7 @@ export default {
           const { data, status } = response;
           this.events = data.data;
           this.pagination = data.meta;
+          console.log("Events", data, status);
         });
     },
 
@@ -144,7 +145,7 @@ export default {
       axios.get("/api/categories").then(response => {
         const { data } = response;
         this.categories = data.data;
-        console.log(this.categories);
+        console.log("Categories", data, status);
       });
     }
   }

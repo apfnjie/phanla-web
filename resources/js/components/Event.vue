@@ -8,6 +8,13 @@
       >
       <div class="info py-4 px-3">
         <h5 class="event-title text-accent">{{event.name}}</h5>
+        <div class="flex">
+          <span
+            class="text-sm text-blue-dark mr-2"
+            v-for="(data, index) in event.categories"
+            :key="index"
+          >{{ '#' + data.name }}</span>
+        </div>
         <span class="event-date text-grey-darker">
           <fa icon="calendar-alt" fixed-width/>
           {{formatTime(event.time)}}

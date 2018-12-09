@@ -12,12 +12,12 @@ class CategoryEvent extends Model
      * @var array
      */
     protected $fillable = [
-        'event_id', 'category_id'
+        'event_tag', 'category_id'
     ];
 
     public function event()
     {
-        return $this->belongsTo('App\Event');
+        return $this->belongsTo('App\Event', 'event_tag', 'tag');
     }
 
     public function category() 

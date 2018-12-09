@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\CategoryEvent;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -23,7 +24,8 @@ class EventResource extends JsonResource
             'time' => $this->time,
             'description' => $this->description,
             'fee' => $this->fee,
-            'banner' => $this->banner != null ? Storage::url($this->banner) : null,
+            'banner' => $this->banner != null ? Storage::url($this->banner) : Storage::url('banners//placeholder.jpg'),
+            'categories' => CategoryEvent::collection($this->categories),
             'created_by' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,

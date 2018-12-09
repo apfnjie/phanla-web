@@ -1,4 +1,3 @@
-2. Add multiple categories for events
 3. Implement admin roles
 4. Filter events by categories
 5. API authentication for selected routes

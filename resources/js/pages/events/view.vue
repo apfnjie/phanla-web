@@ -15,7 +15,15 @@
           {{formatTime(event.time)}}
         </h6>
         <h2 class="text-accent event-title block text-4x1 mb-3 font-bold">{{event.name}}</h2>
-        <h6 class="block text-grey-darker text-sm font-bold mb-3">
+        <div class="flex mb-3">
+          <span
+            class="text-blue-dark text-lg mr-2"
+            v-for="(data, index) in event.categories"
+            :key="index"
+          >{{ '#' + data.name }}</span>
+        </div>
+
+        <h6 class="block text-grey-darker text-sm font-bold mb-3 text-lg">
           <fa icon="map-marker-alt" fixed-width/>
           {{event.location}}
         </h6>

@@ -127,6 +127,10 @@ export default {
       );
       if (status === 204) {
         this.success = true;
+        window.scrollTo(0, 0);
+        setTimeout(() => {
+          this.$router.push({ name: "events.all" });
+        }, 1000);
       }
       console.log(data, status);
     }

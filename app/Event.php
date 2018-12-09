@@ -36,6 +36,6 @@ class Event extends Model
 
     public function categories()
     {
-        return $this->hasMany('App\Category');
+        return $this->belongsToMany('App\Category', 'category_events', 'event_tag', 'category_id');
     }
 }

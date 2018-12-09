@@ -15,11 +15,11 @@ class CreateCategoryEventsTable extends Migration
     {
         Schema::create('category_events', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_id')->unsigned();
+            $table->string('event_tag');
             $table->integer('category_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->foreign('event_tag')->references('tag')->on('events')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
