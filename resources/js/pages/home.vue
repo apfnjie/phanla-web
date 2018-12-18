@@ -29,13 +29,15 @@
 
           <div class="col-md-10 m-auto">
             <div class="w-full inline-flex justify-center flex-wrap">
-              <div
+              <router-link
+                :to="{ name: 'search', query: { category: category.name } }"
+                href
                 v-for="category in categories"
                 :key="category.category_id"
-                class="category shadow-lg bg-accent rounded-full py-2 px-4 justify-center m-2"
+                class="no-underline category shadow-lg bg-accent rounded-full py-2 px-4 justify-center m-2"
               >
                 <span class="text-white">{{category.name}}</span>
-              </div>
+              </router-link>
             </div>
           </div>
         </div>
@@ -110,6 +112,7 @@ export default {
   data() {
     return {
       search: "",
+      filter_category: "",
       img: require("../assets/background.jpg"),
       categories: [],
       events: [],
@@ -130,7 +133,8 @@ export default {
         .get("/api/events?page=" + this.pagination.current_page, {
           params: {
             name: this.search,
-            status: 2
+            status: 2,
+            category: this.filter_category
           }
         })
         .then(response => {
@@ -147,6 +151,11 @@ export default {
         this.categories = data.data;
         console.log("Categories", data, status);
       });
+    },
+
+    async filterByCategories(category) {
+      this.filter_category = category;
+      this.index();
     }
   }
 };
@@ -181,5 +190,10 @@ export default {
 
 .category {
   width: auto;
+}
+
+.category:hover {
+  text-decoration: none;
+  background-color: tomato;
 }
 </style>

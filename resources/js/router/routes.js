@@ -12,6 +12,7 @@ const PasswordReset = () =>
 const NotFound = () => import("~/pages/errors/404").then(m => m.default || m);
 
 const Home = () => import("~/pages/home").then(m => m.default || m);
+const Search = () => import('~/pages/search').then(m => m.default || m);
 const Settings = () =>
   import("~/pages/settings/index").then(m => m.default || m);
 const SettingsProfile = () =>
@@ -58,6 +59,7 @@ export default [
   },
 
   { path: "/home", name: "home", component: Home },
+  { path: '/find', name: 'search', component: Search },
   {
     path: "/settings",
     component: Settings,
