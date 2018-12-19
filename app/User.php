@@ -38,6 +38,11 @@ class User extends Authenticatable implements JWTSubject
         'photo_url',
     ];
 
+    public function privilege()
+    {
+        return $this->hasOne('App\Privilege');
+    }
+
     /**
      * Get the profile photo URL attribute.
      *

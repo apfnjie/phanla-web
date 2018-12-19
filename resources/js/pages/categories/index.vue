@@ -1,12 +1,12 @@
 <template>
-<transition name="fade" mode="out-in">
-  <router-view />
-</transition>
+  <transition name="fade" mode="out-in">
+    <router-view/>
+  </transition>
 </template>
 
 <script>
 export default {
-  middleware: "auth"
+  middleware: ["auth", "admin"]
 };
 </script>
 

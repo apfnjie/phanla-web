@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div class="bg-grey-lightest d-flex">
-      <div class="flex-auto w-1/2">
+    <div class="bg-grey-lightest flex-col lg:flex lg:flex-row">
+      <div class="lg:w-1/2">
         <img
+          class="w-full"
           :src="(event.banner != null) ? event.banner : 'https://www.starjournalnow.com/wp-content/uploads/2018/07/EVENTS-GRAPHIC_web.jpg'"
           alt
-          height="100px"
         >
       </div>
 
-      <div class="bg-grey-lighter flex-auto w-1/2 p-5">
+      <div class="bg-grey-lighter lg:w-1/2 p-5">
         <h6 class="block text-grey-darker text-sm mb-3 font-bold">
           <fa icon="calendar-alt" fixed-width/>
           {{formatTime(event.time)}}
@@ -28,7 +28,7 @@
           {{event.location}}
         </h6>
         <h6
-          class="block text-grey-darker text-sm mb-5"
+          class="block text-grey-darker text-sm mb-3"
         >&nbsp;&nbsp;&nbsp;by {{event.created_by.name}}</h6>
         <template v-if="event.fee === null || event.fee === 0">
           <h4 class="text-primary">&nbsp;&nbsp;&nbsp;Free</h4>
@@ -42,7 +42,7 @@
     <div class="bg-white pb-5">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 bg-white m-auo p-5 border border-grey-lighter shadow -mt-16">
+          <div class="col-md-12 bg-white m-auo p-5 border border-grey-lighter shadow -mt-10">
             <h5 class="block text-grey-darker text-sm font-bold mb-3">Description</h5>
             <p class="text-sm">{{event.description}}</p>
           </div>

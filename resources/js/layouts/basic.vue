@@ -1,13 +1,20 @@
 <template>
-  <div class="basic-layout d-flex align-items-center justify-content-center m-0 bg-white">
+  <div class="main-layout">
+    <navbar/>
+
     <child/>
   </div>
 </template>
 
 <script>
+import Navbar from "~/components/Navbar";
 export default {
-  name: 'BasicLayout'
-}
+  name: "BasicLayout",
+
+  components: {
+    Navbar
+  }
+};
 </script>
 
 <style lang="scss">
@@ -22,7 +29,7 @@ export default {
     padding: 0 25px;
     font-size: 12px;
     font-weight: 600;
-    letter-spacing: .1rem;
+    letter-spacing: 0.1rem;
     text-decoration: none;
     text-transform: uppercase;
   }

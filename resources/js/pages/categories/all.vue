@@ -1,31 +1,46 @@
 <template>
-<div class="bg-grey-lightest py-10">
-  <div class="container">
-    <div class="row mb-8">
-      <div class="col-md-8 m-auto">
-        <div class="search d-flex overflow-hidden">
-
-          <input v-model="search_name" @keyup="index" type="text" class="form-input border flex-grow-1 text-accent" placeholder="Search Categories"/>
-          <router-link :to="{ name: 'categories.create'}" class="form-button btn-secondary bg-accent rounded-l-none"><fa icon="plus-square" fixed-width /></router-link>
+  <div class="bg-grey-lightest py-10">
+    <div class="container">
+      <div class="row mb-8">
+        <div class="col-md-8 m-auto">
+          <div class="search d-flex overflow-hidden">
+            <input
+              v-model="search_name"
+              @keyup="index"
+              type="text"
+              class="form-input border flex-grow-1 text-accent"
+              placeholder="Search Categories"
+            >
+            <router-link
+              :to="{ name: 'categories.create'}"
+              class="form-button btn-secondary bg-accent rounded-l-none"
+            >
+              <fa icon="plus-square" fixed-width/>
+            </router-link>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row mb-5">
-      <div v-for="(category) in categories" :key="category.category_id" class="col-md-3">
-        <category v-bind:category="category"/>
+      <div class="row mb-5">
+        <div v-for="(category) in categories" :key="category.category_id" class="col-md-3">
+          <category v-bind:category="category"/>
+        </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <div>
-          <pagination class="float-md-right" :pagination="pagination" @paginate="index()" :offset="4"></pagination>
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <pagination
+              class="float-md-right"
+              :pagination="pagination"
+              @paginate="index()"
+              :offset="4"
+            ></pagination>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -35,6 +50,8 @@ export default {
   metaInfo() {
     return { title: "Categories" };
   },
+
+  middleware: "admin",
 
   data: () => ({
     search_name: "",

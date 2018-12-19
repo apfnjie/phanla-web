@@ -1,3 +1,0 @@
-3. Implement admin roles
-4. Filter events by categories
-5. API authentication for selected routes

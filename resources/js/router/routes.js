@@ -40,6 +40,9 @@ const CategoryEdit = () =>
 const CategoryDelete = () =>
   import("~/pages/categories/delete").then(m => m.default || m);
 
+const Privileges = () =>
+  import("~/pages/privileges/all").then(m => m.default || m);
+
 export default [
   { path: "/", name: "welcome", component: Welcome },
   { path: "/about-us", name: "about", component: AboutUs },
@@ -60,6 +63,7 @@ export default [
 
   { path: "/home", name: "home", component: Home },
   { path: '/find', name: 'search', component: Search },
+  { path: '/privileges', name: 'privileges', component: Privileges },
   {
     path: "/settings",
     component: Settings,
