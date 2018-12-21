@@ -3,7 +3,7 @@ const mix = require("laravel-mix");
 const tailwindcss = require("tailwindcss");
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
-mix.config.vue.esModule = true;
+// mix.config.vue.esModule = true;
 
 mix
   .js("resources/js/app.js", "public/js")
@@ -40,6 +40,9 @@ if (mix.inProduction()) {
 }
 
 mix.webpackConfig({
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     // new BundleAnalyzerPlugin()
   ],
